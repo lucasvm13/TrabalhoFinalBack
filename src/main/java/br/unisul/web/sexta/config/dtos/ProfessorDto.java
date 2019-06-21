@@ -1,36 +1,26 @@
-package br.unisul.web.sexta.domain;
+package br.unisul.web.sexta.config.dtos;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
+import br.unisul.web.sexta.domain.Professor;
 
-@Entity
-public class Disciplina implements Serializable {
+public class ProfessorDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	private String nome;
+	private int idade;
+	private String sexo;
 
-	@ManyToMany(mappedBy="disciplinas")
-	private List<Aluno> alunos = new ArrayList<>();
-
-	
-	public Disciplina() {
+	public ProfessorDto() {
 
 	}
 
-	public Disciplina(Integer id, String nome) {
-		this.id = id;
-		this.nome = nome;
+	public ProfessorDto(Professor obj) {
+		id = obj.getId();
+		nome = obj.getNome();
+		idade = obj.getIdade();
+		sexo = obj.getSexo();
 	}
 
 	public Integer getId() {
@@ -49,21 +39,30 @@ public class Disciplina implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Aluno> getAlunos() {
-		return alunos;
+	public int getIdade() {
+		return idade;
 	}
 
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((alunos == null) ? 0 : alunos.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + idade;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
 		return result;
 	}
 
@@ -75,23 +74,25 @@ public class Disciplina implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Disciplina other = (Disciplina) obj;
-		if (alunos == null) {
-			if (other.alunos != null)
-				return false;
-		} else if (!alunos.equals(other.alunos))
-			return false;
+		ProfessorDto other = (ProfessorDto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (idade != other.idade)
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		return false;
+		if (sexo == null) {
+			if (other.sexo != null)
+				return false;
+		} else if (!sexo.equals(other.sexo))
+			return false;
+		return true;
 	}
 
 }

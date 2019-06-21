@@ -1,11 +1,16 @@
 package br.unisul.web.sexta.domain;
-
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
+import br.unisul.web.sexta.domain.Disciplina;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 
 @Entity
 public class Aluno implements Serializable {
@@ -20,6 +25,15 @@ public class Aluno implements Serializable {
 	private Integer n2;
 	private Integer n3;
 
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "ALUNO_DISCIPLINA",
+		joinColumns = @JoinColumn(name="aluno_id"),
+		inverseJoinColumns = @JoinColumn(name="disciplina_id")
+	)
+	private List<Disciplina> disciplinas = new ArrayList<>();
+
 	public Aluno() {
 
 	}
@@ -31,7 +45,7 @@ public class Aluno implements Serializable {
 		this.n2 = n2;
 		this.n3 = n3;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -70,6 +84,14 @@ public class Aluno implements Serializable {
 
 	public void setN3(Integer n3) {
 		this.n3 = n3;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 	@Override

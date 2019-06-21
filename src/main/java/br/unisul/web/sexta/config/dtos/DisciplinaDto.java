@@ -1,9 +1,6 @@
 package br.unisul.web.sexta.config.dtos;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import br.unisul.web.sexta.domain.Aluno;
 import br.unisul.web.sexta.domain.Disciplina;
 
 public class DisciplinaDto implements Serializable {
@@ -11,8 +8,6 @@ public class DisciplinaDto implements Serializable {
 
 	private Integer id;
 	private String nome;
-	private String professor;
-	private ArrayList<Aluno> alunos = new ArrayList<>();
 
 	public DisciplinaDto() {
 
@@ -21,9 +16,7 @@ public class DisciplinaDto implements Serializable {
 	public DisciplinaDto(Disciplina obj) {
 		id = obj.getId();
 		nome = obj.getNome();
-		professor = obj.getProfessor();
-		
-		
+
 	}
 
 }
