@@ -24,4 +24,5 @@ public class DevConfig {
 		dbService.inicializaBancoDeDados();
 		return true;
 	}
+
 }

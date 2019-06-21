@@ -12,15 +12,22 @@ public class ProfessorDto implements Serializable {
 	private int idade;
 	private String sexo;
 
+	public ProfessorDto(Professor p) {
+		id = p.getId();
+		nome = p.getNome();
+		idade = p.getIdade();
+		sexo = p.getSexo();
+	}
+
 	public ProfessorDto() {
 
 	}
 
-	public ProfessorDto(Professor obj) {
-		id = obj.getId();
-		nome = obj.getNome();
-		idade = obj.getIdade();
-		sexo = obj.getSexo();
+	public ProfessorDto(Integer id, String nome, int idade, String sexo) {
+		this.id = id;
+		this.nome = nome;
+		this.idade = idade;
+		this.sexo = sexo;
 	}
 
 	public Integer getId() {

@@ -1,16 +1,17 @@
 package br.unisul.web.sexta.domain;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import br.unisul.web.sexta.domain.Disciplina;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Aluno implements Serializable {
@@ -21,24 +22,23 @@ public class Aluno implements Serializable {
 	private Integer id;
 
 	private String nome;
-	private Integer n1;
-	private Integer n2;
-	private Integer n3;
 
-	
+	private int n1;
+
+	private int n2;
+
+	private int n3;
+
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "ALUNO_DISCIPLINA",
-		joinColumns = @JoinColumn(name="aluno_id"),
-		inverseJoinColumns = @JoinColumn(name="disciplina_id")
-	)
+	@JoinTable(name = "ALUNO_DISCIPLINA", joinColumns = @JoinColumn(name = "aluno_id"), inverseJoinColumns = @JoinColumn(name = "disciplina_id"))
 	private List<Disciplina> disciplinas = new ArrayList<>();
 
 	public Aluno() {
 
 	}
 
-	public Aluno(Integer id, String nome, Integer n1, Integer n2, Integer n3) {
+	public Aluno(Integer id, String nome, int n1, int n2, int n3) {
 		this.id = id;
 		this.nome = nome;
 		this.n1 = n1;
@@ -62,27 +62,27 @@ public class Aluno implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getN1() {
+	public int getN1() {
 		return n1;
 	}
 
-	public void setN1(Integer n1) {
+	public void setN1(int n1) {
 		this.n1 = n1;
 	}
 
-	public Integer getN2() {
+	public int getN2() {
 		return n2;
 	}
 
-	public void setN2(Integer n2) {
+	public void setN2(int n2) {
 		this.n2 = n2;
 	}
 
-	public Integer getN3() {
+	public int getN3() {
 		return n3;
 	}
 
-	public void setN3(Integer n3) {
+	public void setN3(int n3) {
 		this.n3 = n3;
 	}
 
@@ -98,10 +98,11 @@ public class Aluno implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((n1 == null) ? 0 : n1.hashCode());
-		result = prime * result + ((n2 == null) ? 0 : n2.hashCode());
-		result = prime * result + ((n3 == null) ? 0 : n3.hashCode());
+		result = prime * result + n1;
+		result = prime * result + n2;
+		result = prime * result + n3;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
@@ -115,25 +116,21 @@ public class Aluno implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Aluno other = (Aluno) obj;
+		if (disciplinas == null) {
+			if (other.disciplinas != null)
+				return false;
+		} else if (!disciplinas.equals(other.disciplinas))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (n1 == null) {
-			if (other.n1 != null)
-				return false;
-		} else if (!n1.equals(other.n1))
+		if (n1 != other.n1)
 			return false;
-		if (n2 == null) {
-			if (other.n2 != null)
-				return false;
-		} else if (!n2.equals(other.n2))
+		if (n2 != other.n2)
 			return false;
-		if (n3 == null) {
-			if (other.n3 != null)
-				return false;
-		} else if (!n3.equals(other.n3))
+		if (n3 != other.n3)
 			return false;
 		if (nome == null) {
 			if (other.nome != null)

@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-
 @Entity
 public class Disciplina implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,13 +16,12 @@ public class Disciplina implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
 
-	@ManyToMany(mappedBy="disciplinas")
+	@ManyToMany(mappedBy = "disciplinas")
 	private List<Aluno> alunos = new ArrayList<>();
 
-	
 	public Disciplina() {
 
 	}
@@ -91,7 +89,7 @@ public class Disciplina implements Serializable {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		return false;
+		return true;
 	}
 
 }
