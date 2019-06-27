@@ -29,6 +29,7 @@ public class Aluno implements Serializable {
 
 	private int n3;
 
+
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "ALUNO_DISCIPLINA", joinColumns = @JoinColumn(name = "aluno_id"), inverseJoinColumns = @JoinColumn(name = "disciplina_id"))
