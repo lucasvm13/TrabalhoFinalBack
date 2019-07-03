@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.unisul.web.sexta.config.dtos.DisciplinaDto;
 import br.unisul.web.sexta.domain.Disciplina;
+import br.unisul.web.sexta.resources.utils.URL;
 import br.unisul.web.sexta.services.DisciplinaService;
 
 @RestController
@@ -53,7 +55,7 @@ public class DisciplinaResource {
 	// LISTAR TODAS
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<DisciplinaDto>> findAll() {
-		List<Disciplina> lista = service.findAll();
+		List<Disciplina> lista = service.findAll();	
 
 		List<DisciplinaDto> listDto = new ArrayList<DisciplinaDto>();
 
@@ -63,5 +65,15 @@ public class DisciplinaResource {
 
 		return ResponseEntity.ok().body(listDto);
 	}
-
+	
+			//BUSCAR POR NOME ((((NOVO))))
+			@RequestMapping(value="/busca",method=RequestMethod.GET)
+			public ResponseEntity<List<Disciplina>> find(@RequestParam(value="nome", defaultValue="")String nome){
+				List <Disciplina> list = service.findByName(URL.decodeParam(nome));
+				return ResponseEntity.ok().body(list);
+			}
+			
+			
+			
+			
 }

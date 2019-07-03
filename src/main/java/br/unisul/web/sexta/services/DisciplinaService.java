@@ -42,4 +42,12 @@ public class DisciplinaService {
 		public List<Disciplina> findAll() {
 			return rep.findAll();
 		}
+
+		// BUSCA POR NOME
+		public List<Disciplina> findByName(String nome) {
+			List<Disciplina> list = rep.findLikeNome(nome);
+			return list;
+		}
+		
+		
 	}

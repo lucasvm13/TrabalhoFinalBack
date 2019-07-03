@@ -55,6 +55,7 @@ public class Disciplina implements Serializable {
 		this.alunos = alunos;
 	}
 
+		
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -12,6 +12,7 @@ public class AlunoDto implements Serializable {
 	private int n1;
 	private int n2;
 	private int n3;
+	String status;
 
 	public AlunoDto(Aluno a) {
 		id = a.getId();
@@ -19,18 +20,20 @@ public class AlunoDto implements Serializable {
 		n1 = a.getN1();
 		n2 = a.getN2();
 		n3 = a.getN3();
+		status = a.getStatus();
 	}
 
 	public AlunoDto() {
 
 	}
 
-	public AlunoDto(Integer id, String nome, int n1, int n2, int n3) {
+	public AlunoDto(Integer id, String nome, int n1, int n2, int n3, String status) {
 		this.id = id;
 		this.nome = nome;
 		this.n1 = n1;
 		this.n2 = n2;
 		this.n3 = n3;
+		this.status = status;
 	}
 
 	public Integer getId() {
@@ -73,6 +76,14 @@ public class AlunoDto implements Serializable {
 		this.n3 = n3;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -82,6 +93,7 @@ public class AlunoDto implements Serializable {
 		result = prime * result + n2;
 		result = prime * result + n3;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 
@@ -109,6 +121,11 @@ public class AlunoDto implements Serializable {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
 		return true;
 	}

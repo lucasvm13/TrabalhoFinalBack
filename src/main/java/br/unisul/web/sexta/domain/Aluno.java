@@ -29,6 +29,7 @@ public class Aluno implements Serializable {
 
 	private int n3;
 
+	String status;
 
 	@JsonIgnore
 	@ManyToMany
@@ -39,13 +40,39 @@ public class Aluno implements Serializable {
 
 	}
 
-	public Aluno(Integer id, String nome, int n1, int n2, int n3) {
+	
+	public Aluno(Integer id, String nome, int n1, int n2, int n3, String status) {
 		this.id = id;
 		this.nome = nome;
 		this.n1 = n1;
 		this.n2 = n2;
 		this.n3 = n3;
+		this.status = status;
 	}
+	
+	public String atualizaStatus (Aluno a) {
+		
+		double media = 0;
+		
+		double n1 = a.getN1();
+		double n2 = a.getN2();
+		double n3 = a.getN3();
+		
+		media = ((n1+n2+n3)/3);
+		
+		if(media>=7) {
+			return "Aprovado!";
+		} 
+		if(media<2) {
+			return "Reprovado!";
+		} 
+		
+		if((media==2) | (media<7) ) {
+			return "Recuperação!";
+		}
+		return null;
+	}
+	
 
 	public Integer getId() {
 		return id;
@@ -95,6 +122,16 @@ public class Aluno implements Serializable {
 		this.disciplinas = disciplinas;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,6 +142,7 @@ public class Aluno implements Serializable {
 		result = prime * result + n2;
 		result = prime * result + n3;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 
@@ -137,6 +175,11 @@ public class Aluno implements Serializable {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
 		return true;
 	}

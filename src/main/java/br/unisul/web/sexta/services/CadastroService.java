@@ -40,4 +40,8 @@ public class CadastroService {
 		public List<Cadastro> findAll() {
 			return rep.findAll();
 		}
+		
+		
 }
+
+
