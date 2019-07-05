@@ -15,10 +15,11 @@ public class Disciplina implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private Integer id;
 
 	private String nome;
-
+	
 	@ManyToMany(mappedBy = "disciplinas")
 	private List<Aluno> alunos = new ArrayList<>();
 

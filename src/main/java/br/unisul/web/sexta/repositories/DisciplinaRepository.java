@@ -13,7 +13,4 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Integer>
 	@Query("SELECT disciplina FROM Disciplina disciplina WHERE disciplina.nome LIKE %:nome%")
 	List<Disciplina> findLikeNome(String nome);
 	
-	
-	
-	
 }

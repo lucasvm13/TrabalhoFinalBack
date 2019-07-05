@@ -40,7 +40,6 @@ public class Aluno implements Serializable {
 
 	}
 
-	
 	public Aluno(Integer id, String nome, int n1, int n2, int n3, String status) {
 		this.id = id;
 		this.nome = nome;
@@ -48,31 +47,9 @@ public class Aluno implements Serializable {
 		this.n2 = n2;
 		this.n3 = n3;
 		this.status = status;
+
 	}
-	
-	public String atualizaStatus (Aluno a) {
-		
-		double media = 0;
-		
-		double n1 = a.getN1();
-		double n2 = a.getN2();
-		double n3 = a.getN3();
-		
-		media = ((n1+n2+n3)/3);
-		
-		if(media>=7) {
-			return "Aprovado!";
-		} 
-		if(media<2) {
-			return "Reprovado!";
-		} 
-		
-		if((media==2) | (media<7) ) {
-			return "Recuperação!";
-		}
-		return null;
-	}
-	
+
 
 	public Integer getId() {
 		return id;
@@ -129,8 +106,6 @@ public class Aluno implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {

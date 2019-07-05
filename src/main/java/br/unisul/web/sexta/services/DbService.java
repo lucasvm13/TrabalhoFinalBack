@@ -32,21 +32,13 @@ public class DbService {
 
 	public void inicializaBancoDeDados() throws ParseException {
 		
-		
+
 				
 		Aluno a1 = new Aluno(null, "Lucas", 10, 9, 8, " ");
 		
-		Aluno a2 = new Aluno(null, "Pedro", 10, 3, 5, " " );
+		Aluno a2 = new Aluno(null, "Pedro", 10, 3, 5, " ");
 		
-		Aluno a3 = new Aluno(null, "José", 10, 8, 5, " " );
-		
-
-		a1.setStatus(a1.atualizaStatus(a1));
-		
-		a2.setStatus(a2.atualizaStatus(a2));
-		
-		a3.setStatus(a3.atualizaStatus(a3));
-		
+		Aluno a3 = new Aluno(null, "José", 10, 8, 5, " ");
 		
 		Disciplina d1 = new Disciplina(null, "POO");
 
@@ -70,8 +62,7 @@ public class DbService {
 		d1.getAlunos().addAll(Arrays.asList(a1, a3));
 		d2.getAlunos().addAll(Arrays.asList(a1, a2, a3));
 		
-			
-		
+	
 		DRep.saveAll(Arrays.asList(d1, d2));
 		ARep.saveAll(Arrays.asList(a1, a2, a3));
 		PRep.saveAll(Arrays.asList(p1, p2));

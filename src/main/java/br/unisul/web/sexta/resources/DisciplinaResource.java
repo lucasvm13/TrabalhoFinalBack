@@ -55,7 +55,7 @@ public class DisciplinaResource {
 	// LISTAR TODAS
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<DisciplinaDto>> findAll() {
-		List<Disciplina> lista = service.findAll();	
+		List<Disciplina> lista = service.findAll();
 
 		List<DisciplinaDto> listDto = new ArrayList<DisciplinaDto>();
 
@@ -65,15 +65,11 @@ public class DisciplinaResource {
 
 		return ResponseEntity.ok().body(listDto);
 	}
-	
-			//BUSCAR POR NOME ((((NOVO))))
-			@RequestMapping(value="/busca",method=RequestMethod.GET)
-			public ResponseEntity<List<Disciplina>> find(@RequestParam(value="nome", defaultValue="")String nome){
-				List <Disciplina> list = service.findByName(URL.decodeParam(nome));
-				return ResponseEntity.ok().body(list);
-			}
-			
-			
-			
-			
+
+	// BUSCAR POR NOME
+	@RequestMapping(value = "/buscaDisciplina", method = RequestMethod.GET)
+	public ResponseEntity<List<Disciplina>> find(@RequestParam(value = "nome", defaultValue = "") String nome) {
+		List<Disciplina> list = service.findByName(URL.decodeParam(nome));
+		return ResponseEntity.ok().body(list);
+	}
 }

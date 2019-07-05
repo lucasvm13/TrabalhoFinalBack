@@ -41,4 +41,10 @@ public class ProfessorService {
 	public List<Professor> findAll() {
 		return rep.findAll();
 	}
+	
+	// BUSCA POR NOME
+	public List<Professor> findByName(String nome) {
+		List<Professor> list = rep.findLikeNome(nome);
+		return list;
+	}
 }

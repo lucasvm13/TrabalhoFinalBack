@@ -12,7 +12,9 @@ public class AlunoService {
 
 	@Autowired
 	private AlunoRepository rep;
-
+	
+	
+	
 	// BUSCA POR ID
 	public Aluno find(Integer id) {
 		Optional<Aluno> obj = rep.findById(id);
@@ -28,7 +30,31 @@ public class AlunoService {
 	// ATUALIZAR
 	public Aluno update(Aluno obj) {
 		find(obj.getId());
+		atualizaStatus(obj);
 		return rep.save(obj);
+	}
+	
+
+	//MEDIA
+	public void atualizaStatus(Aluno obj) {
+
+		double media = 0;
+		double n1 = obj.getN1();
+		double n2 = obj.getN2();
+		double n3 = obj.getN3();
+
+		media = ((n1 + n2 + n3) / 3);
+
+		if (media >= 7) {
+			obj.setStatus("Aprovado");
+		}
+		if (media < 2) {
+			obj.setStatus("Reprovado");
+		}
+
+		if ((media == 2) | (media < 7)) {
+			obj.setStatus("Recuperação");
+		}
 	}
 
 	// DELETAR
@@ -42,5 +68,10 @@ public class AlunoService {
 		return rep.findAll();
 	}
 	
+	// BUSCA POR NOME
+	public List<Aluno> findByName(String nome) {
+		List<Aluno> list = rep.findLikeNome(nome);
+		return list;
+	}
 
 }
